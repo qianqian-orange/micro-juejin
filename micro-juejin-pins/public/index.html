@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>base vue project</title>
+  <style>
+    @media (-webkit-min-device-pixel-ratio: 1) {
+      body {
+        font-size: 12px;
+      }
+    }
+    @media (-webkit-min-device-pixel-ratio: 2) {
+      body {
+        font-size: 24px;
+      }
+    }
+    @media (-webkit-min-device-pixel-ratio: 3) {
+      body {
+        font-size: 36px;
+      }
+    }
+  </style>
+  <script src="<%= htmlWebpackPlugin.options.config.publicPath %>static/js/flexible.js"></script>
+</head>
+<body>
+  <div id="app"></div>
+  <% if (!htmlWebpackPlugin.options.config.isDev) { %>
+    <script src="<%= htmlWebpackPlugin.options.config.publicPath %>dll/vendors.665eda.dll.js"></script>
+  <% } %>
+</body>
+</html>

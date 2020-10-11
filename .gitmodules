@@ -1,0 +1,9 @@
+[submodule "micro-juejin-portal/src/material"]
+	path = micro-juejin-portal/src/material
+	url = git@github.com:wunjunjia/material.git
+[submodule "micro-juejin-home/src/material"]
+	path = micro-juejin-home/src/material
+	url = git@github.com:wunjunjia/material.git
+[submodule "micro-juejin-pins/src/material"]
+	path = micro-juejin-pins/src/material
+	url = git@github.com:wunjunjia/material.git
