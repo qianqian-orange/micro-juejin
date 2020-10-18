@@ -12,6 +12,9 @@ import {
   Notify,
   Loading,
   Empty,
+  Mask,
+  Button,
+  Image,
 } from 'material/ui'
 import App from './App.vue'
 import 'material/ui/index.less'
@@ -23,6 +26,9 @@ Vue.use(Search)
 Vue.use(Notify)
 Vue.use(Loading)
 Vue.use(Empty)
+Vue.use(Mask)
+Vue.use(Button)
+Vue.use(Image)
 
 let app = null
 

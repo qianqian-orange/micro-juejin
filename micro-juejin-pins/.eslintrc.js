@@ -17,9 +17,12 @@ module.exports = {
     'space-before-function-paren': ['error', {
       'named': 'never',
     }],
-    'vue/require-explicit-emits': 0,
-    'vue/no-deprecated-destroyed-lifecycle': 0,
+    'vue/singleline-html-element-content-newline': ['error', {
+      'ignores': ['p', 'span'],
+    }],
     'no-prototype-builtins': 0,
     'vue/no-deprecated-filter': 0,
+    'vue/require-explicit-emits': 0,
+    'vue/no-deprecated-destroyed-lifecycle': 0,
   },
 }

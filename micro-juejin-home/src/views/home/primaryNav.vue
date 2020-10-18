@@ -69,7 +69,6 @@ export default {
       this.$emit('load', {
         url: item.category_id === '-1' ? '/api/recommend_all_feed' : '/api/recommend_cate_feed',
         cate_id: item.category_id,
-        cursor: '0',
       })
     },
   },

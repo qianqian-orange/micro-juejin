@@ -101,7 +101,6 @@ export default {
       this.$emit('load', {
         url: item.tag_id === '-1' ? '/api/recommend_cate_feed' : '/api/recommend_cate_tag_feed',
         tag_id: item.tag_id,
-        cursor: '0',
       })
     },
   },

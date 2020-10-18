@@ -23,7 +23,7 @@
             :key="item.sortType"
             class="sort-list-item"
             :class="item.sortType === params.sort_type ? 'active' : ''"
-            @click="sort(item)"
+            @click.stop="sort(item)"
           >
             {{ item.text }}
           </li>
@@ -116,6 +116,7 @@ export default {
     updateParam(params) {
       this.articleList = []
       this.finish = false
+      this.params.cursor = '0'
       Object.keys(params).forEach((key) => {
         if (this.params.hasOwnProperty(key)) {
           this.params[key] = params[key]
@@ -127,11 +128,7 @@ export default {
         return
       }
       const item = this.navList.find(item => item.sort === sort)
-      if (!item) {
-        this.params.sort_type = 200
-        return
-      }
-      this.params.sort_type = item.sortType
+      this.params.sort_type = item ? item.sortType : 200
     },
     getData() {
       this.loading = true
@@ -163,10 +160,7 @@ export default {
     sort(data) {
       if (this.params.sort_type === data.sortType) return
       this.$router.push(`${this.$route.path}?sort=${data.sort}`)
-      this.params.sort_type = data.sortType
-      this.params.cursor = '0'
-      this.articleList = []
-      this.finish = false
+      this.updateParam()
       this.getData()
     },
     loadmore() {

@@ -34,19 +34,28 @@
             v-for="pin in pins"
             :key="pin.msg_Info.msg_id"
             :pin="pin"
+            @preview="open"
           />
         </ul>
       </list-scroll-view>
     </div>
+    <picture-preview
+      v-show="preview"
+      ref="preview"
+      :data-source="picList"
+      :active="active"
+      @close="close"
+    />
   </div>
 </template>
 
 <script>
 import axios from 'axios'
 import { BASE_URL } from '@/config/const'
-import ListScrollView from 'material/components/listScrollView'
+import ListScrollView from 'material/components/listScrollView/index.vue'
 import CustomNav from './nav.vue'
 import Card from './card.vue'
+import PicturePreview from 'material/components/picturePreview/index.vue'
 
 export default {
   name: 'Pins',
@@ -54,6 +63,7 @@ export default {
     ListScrollView,
     CustomNav,
     Card,
+    PicturePreview,
   },
   data() {
     return {
@@ -80,6 +90,9 @@ export default {
         limit: 20,
         topic_id: '-1',
       },
+      preview: false,
+      picList: [],
+      active: 0,
     }
   },
   methods: {
@@ -119,6 +132,18 @@ export default {
     },
     loadmore() {
       this.getData()
+    },
+    open({ picList, index }) {
+      this.preview = true
+      this.active = index
+      if (this.picList === picList) this.$refs.preview.jump(index)
+      else this.picList = picList
+    },
+    close() {
+      this.preview = false
+      // 这里需要把active重置，否则下次open如果index相同，那么就不会触发picturePreview的watch方法
+      this.active = 0
+      this.$refs.preview.jump(0)
     },
   },
 }

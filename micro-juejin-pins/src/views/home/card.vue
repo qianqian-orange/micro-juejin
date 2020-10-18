@@ -1,45 +1,57 @@
 <template>
   <li class="pin-list-item">
     <div class="pin-header">
-      <img
-        v-lazy="pin.author_user_info.avatar_large"
+      <elm-image
         class="pin-header-avatar"
+        :src="pin.author_user_info.avatar_large"
+        :font-size="36"
+        width="84"
         alt="avatar"
-      >
+        round
+      />
       <div class="pin-header-content">
         <p class="username">
           {{ pin.author_user_info.user_name }}
         </p>
         <p class="extra">
-          <span class="job">{{ pin.author_user_info.job_title || pin.author_user_info.company }}</span>
-          <span class="time">{{ pin.msg_Info.ctime | time }}</span>
+          <span
+            v-if="pin.author_user_info.job_title"
+            class="job"
+          >{{ pin.author_user_info.job_title }}</span>
+          <span>{{ pin.msg_Info.ctime | time }}</span>
         </p>
+        <elm-button
+          type="primary"
+          size="small"
+        >
+          关注
+        </elm-button>
       </div>
     </div>
-    <p class="pin-content">
-      {{ pin.msg_Info.content }}
-    </p>
-    <img
+    <p class="pin-content">{{ pin.msg_Info.content }}</p>
+    <elm-image
       v-if="pin.msg_Info.pic_list.length === 1"
-      v-lazy="pin.msg_Info.pic_list[0]"
-      class="pin-big-image"
+      :src="pin.msg_Info.pic_list[0]"
+      width="400"
       alt="pin-image"
-    >
+      stop-propagation
+      @click="preview(0)"
+    />
     <ul
       v-else
       class="pin-image-list"
-      :style="{ justifyContent: pin.msg_Info.pic_list.length >= 3 ? 'space-between' : 'flex-start'}"
     >
       <li
-        v-for="item in pin.msg_Info.pic_list"
-        :key="item"
+        v-for="(item, index) in pin.msg_Info.pic_list"
+        :key="index"
         class="pin-image-list-item"
       >
-        <img
-          v-lazy="item"
-          class="pin-small-image"
+        <elm-image
+          :src="item"
           alt="pin-image"
-        >
+          stop-propagation
+          @click="preview(index)"
+        />
       </li>
     </ul>
     <div class="pin-action">
@@ -84,6 +96,14 @@ export default {
       required: true,
     },
   },
+  methods: {
+    preview(index) {
+      this.$emit('preview', {
+        picList: this.pin.msg_Info.pic_list,
+        index,
+      })
+    },
+  },
 }
 </script>
 
@@ -99,13 +119,12 @@ export default {
   }
 
   .pin-header {
+    position: relative;
     display: flex;
+    .height(84);
 
     &-avatar {
-      .width(84);
-      .height(84);
       .margin-right(24);
-      border-radius: 50%;
     }
 
     &-content {
@@ -133,6 +152,7 @@ export default {
         position: relative;
         max-width: 60%;
         .padding-right(20);
+        .margin-right(8);
 
         &::after {
           content: "·";
@@ -142,10 +162,12 @@ export default {
           .margin-left(8);
         }
       }
+    }
 
-      .time {
-        .margin-left(8);
-      }
+    .elm-button {
+      position: absolute;
+      .top(8);
+      right: 0;
     }
   }
 
@@ -172,13 +194,6 @@ export default {
 
     &:nth-child(3n) {
       margin-right: 0;
-    }
-
-    &::before {
-      content: "";
-      display: block;
-      width: 100%;
-      padding-top: 100%;
     }
   }
 
@@ -216,19 +231,5 @@ export default {
     .count {
       .margin-left(8);
     }
-  }
-
-  .pin-small-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-
-  .pin-big-image {
-    .width(400);
-    .height(400);
-    .margin-top(8);
   }
 </style>
