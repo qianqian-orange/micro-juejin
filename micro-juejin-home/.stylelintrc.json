@@ -4,7 +4,7 @@
 		"stylelint-order"
   ],
   "ignoreFiles": [
-    "/src/material/font/iconfont.css"
+    "src/material/font/iconfont.css"
   ],
   "rules": {
     "selector-pseudo-element-no-unknown": null,

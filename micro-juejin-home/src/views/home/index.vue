@@ -113,7 +113,7 @@ export default {
     }
   },
   methods: {
-    updateParam(params) {
+    updateParam(params = {}) {
       this.articleList = []
       this.finish = false
       this.params.cursor = '0'
