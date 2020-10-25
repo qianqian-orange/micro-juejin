@@ -13,8 +13,8 @@ const publicPath = '/juejin/'
 module.exports = {
   entry: resolvePath('../src/index.js'),
   output: {
-    filename: '[name].[hash:6].js',
-    path: resolvePath('../dist'),
+    filename: 'static/js/[name].[hash:6].js',
+    path: resolvePath('../server/public'),
     publicPath,
   },
   module: {
@@ -99,20 +99,21 @@ module.exports = {
       // minify: {
       //   collapseWhitespace: false,
       // },
+      favicon: resolvePath('../public', 'favicon.ico'),
       config: {
         publicPath,
         isDev,
       },
     }),
     new MiniCssExtractPlugin({
-      filename: isDev ? '[name].css' : '[name].[contenthash:6].css',
+      filename: isDev ? 'static/css/[name].css' : 'static/css/[name].[contenthash:6].css',
     }),
     new VueLoaderPlugin(),
     new CopyWebpackPlugin({
       patterns: [
         {
           from: resolvePath('../public/js/*'),
-          to: resolvePath('../dist/static/js'),
+          to: resolvePath('../server/public/static/js'),
           flatten: true,
         },
       ],

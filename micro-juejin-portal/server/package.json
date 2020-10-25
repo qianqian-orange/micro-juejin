@@ -1,0 +1,22 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "cross-env PORT=3000 node index.js",
+    "pro": "cross-env PORT=8000 node index.js",
+    "start": "cross-env PORT=8000 pm2 start index.js --name micro-juejin-portal"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "compression": "^1.7.4",
+    "express": "^4.17.1",
+    "express-favicon": "^2.0.1"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.2"
+  }
+}

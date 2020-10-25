@@ -10,13 +10,13 @@ const resolvePath = (...paths) => path.join(__dirname, ...paths)
 const isDev = process.env.NODE_ENV === 'development'
 
 // 解决基座访问app资源404问题
-const publicPath = '//localhost:8001/juejin/home/'
+const publicPath = isDev ? '//localhost:8001/juejin/micro-juejin-home/' : '/juejin/micro-juejin-home/'
 
 module.exports = {
   entry: resolvePath('../src/index.js'),
   output: {
-    filename: '[name].[hash:6].js',
-    path: resolvePath('../dist'),
+    filename: 'static/js/[name].[hash:6].js',
+    path: resolvePath('../server/public'),
     publicPath,
     library: `${name}-[name]`,
     libraryTarget: 'umd',
@@ -101,6 +101,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: resolvePath('../public/index.html'),
+      favicon: resolvePath('../public', 'favicon.ico'),
       // minify: {
       //   collapseWhitespace: false,
       // },
@@ -110,13 +111,13 @@ module.exports = {
       },
     }),
     new MiniCssExtractPlugin({
-      filename: isDev ? '[name].css' : '[name].[contenthash:6].css',
+      filename: isDev ? 'static/css/[name].css' : 'static/css/[name].[contenthash:6].css',
     }),
     new CopyWebpackPlugin({
       patterns: [
         {
           from: resolvePath('../public/js/*'),
-          to: resolvePath('../dist/static/js'),
+          to: resolvePath('../server/public/static/js'),
           flatten: true,
         },
       ],

@@ -13,7 +13,7 @@ module.exports = merge(baseConfig, {
     progress: true,
     compress: true,
     clientLogLevel: 'silent',
-    contentBase: resolvePath('../dist'),
+    contentBase: resolvePath('../server/public'),
     overlay: false,
     headers: {
       // 如果设置为*，那么不允许携带认证头和cookie
@@ -31,7 +31,7 @@ module.exports = merge(baseConfig, {
     },
     historyApiFallback: {
       rewrites: [
-        { from: /./, to: '/juejin/pins/index.html' },
+        { from: /./, to: '/juejin/micro-juejin-pins/index.html' },
       ],
     },
   },

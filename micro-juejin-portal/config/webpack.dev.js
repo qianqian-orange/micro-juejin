@@ -13,16 +13,17 @@ module.exports = merge(baseConfig, {
     progress: true,
     compress: true,
     clientLogLevel: 'silent',
-    contentBase: resolvePath('../dist'),
+    contentBase: resolvePath('../server/public'),
     overlay: false,
     proxy: {
-      '/juejin/micro-juejin-home/api': {
-        target: "http://localhost:8001",
+      '/juejin/micro-juejin-home': {
+        target: 'http://localhost:8001',
         // ws: false,
         // changeOrigin: true,
+        // pathRewrite: {}
       },
-      '/juejin/micro-juejin-pins/api': {
-        target: "http://localhost:8002",
+      '/juejin/micro-juejin-pins': {
+        target: 'http://localhost:8002',
       },
     },
     historyApiFallback: {

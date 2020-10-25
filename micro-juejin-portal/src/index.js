@@ -10,12 +10,14 @@ import render from './render'
 import {
   Icon,
   Search,
+  Notify,
 } from 'material/ui'
 import 'material/ui/index.less'
 import './less/index.less'
 
 Vue.use(Icon)
 Vue.use(Search)
+Vue.use(Notify)
 
 const loader = loading => render({ loading })
 
@@ -23,14 +25,16 @@ const loader = loading => render({ loading })
 registerMicroApps([
   {
     name: 'micro-juejin-home',
-    entry: '//localhost:8001',
+    // '//localhost:8001' 改成 '/juejin/micro-juejin-home'之后通过webpack-dev-server进行代理，好处不用显示设定ip
+    // 另外需要注意不能与activeRule相同, 如果相同的话直接展示代理的页面
+    entry: '/juejin/micro-juejin-home',
     container: '#subapp-container',
     loader,
     activeRule: '/juejin/home',
   },
   {
     name: 'micro-juejin-pins',
-    entry: '//localhost:8002',
+    entry: '/juejin/micro-juejin-pins',
     container: '#subapp-container',
     loader,
     activeRule: '/juejin/pins',

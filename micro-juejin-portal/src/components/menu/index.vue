@@ -77,6 +77,10 @@ export default {
     jump(index) {
       this.collapse = true
       if (this.activeIndex === index) return
+      if (index >= 2) {
+        this.$notify({ type: 'primary', message: '功能正在开发中' })
+        return
+      }
       this.activeIndex = index
       this.$router.push(this.menu[index].url)
     },

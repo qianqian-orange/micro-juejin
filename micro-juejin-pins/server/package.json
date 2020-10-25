@@ -4,13 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "cross-env PORT=3002 node index.js",
+    "pro": "cross-env PORT=8002 node index.js",
+    "start": "cross-env PORT=8002 pm2 start index.js --name micro-juejin-pins"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.20.0",
-    "express": "^4.17.1"
+    "compression": "^1.7.4",
+    "express": "^4.17.1",
+    "express-favicon": "^2.0.1"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.2"
   }
 }

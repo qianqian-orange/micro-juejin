@@ -3,18 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>base vue project</title>
+  <title>掘金微服务APP</title>
+  <!-- 这里的font-size响应式处理不要抽取到单独的css文件中，不然会导致一些样式问题 -->
   <style>
     @media (-webkit-min-device-pixel-ratio: 1) {
       body {
         font-size: 12px;
       }
     }
+
     @media (-webkit-min-device-pixel-ratio: 2) {
       body {
         font-size: 24px;
       }
     }
+
     @media (-webkit-min-device-pixel-ratio: 3) {
       body {
         font-size: 36px;
@@ -26,7 +29,7 @@
 <body>
   <div id="mainapp"></div>
   <% if (!htmlWebpackPlugin.options.config.isDev) { %>
-    <script src="<%= htmlWebpackPlugin.options.config.publicPath %>dll/vendors.665eda.dll.js"></script>
+    <script src="<%= htmlWebpackPlugin.options.config.publicPath %>dll/vendors.816cb8.dll.js"></script>
   <% } %>
 </body>
 </html>

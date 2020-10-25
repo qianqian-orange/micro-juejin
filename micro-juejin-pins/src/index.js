@@ -4,7 +4,7 @@ import router, { destroy } from './router'
 import 'material/config/axios'
 import io from 'material/directives/v-lazy'
 import { destroy as scrollDestory } from 'material/lib/scroll'
-import '@/config/axios'
+import initAxios from '@/config/axios'
 import {
   Tag,
   Icon,
@@ -60,6 +60,7 @@ export async function bootstrap() {
  * 应用每次进入都会调用 mount 方法，通常我们在这里触发应用的渲染方法
  */
 export async function mount(props) {
+  initAxios()
   const { container } = props
   container.style.height = '100%'
   console.log('[vue] props from main framework', props)
